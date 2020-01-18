@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
     private Rigidbody2D rb;
     private Health health;
+    private Weapon weapon;
 
     private float horizontalMove = 0f;
     private bool jumpRequested = false;
@@ -22,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         health = GetComponent<Health>();
+        weapon = GetComponent<Weapon>();
 
         healthBar.SetCoefficient(1.0f, true);
     }
@@ -44,6 +46,7 @@ public class PlayerMovement : MonoBehaviour
                 isHurt = false;
                 health.invincible = false;
                 hurtEnded = true;
+                weapon.canShoot = true;
             }
             else
             {
@@ -92,6 +95,8 @@ public class PlayerMovement : MonoBehaviour
 
         isHurt = true;
         health.invincible = true;
+
+        weapon.canShoot = false;
 
         if (!directionToRight)
         {

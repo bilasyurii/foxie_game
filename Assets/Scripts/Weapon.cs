@@ -5,8 +5,13 @@ public class Weapon : MonoBehaviour
     public Transform firePoint;
     public GameObject bulletPrefab;
 
+    public bool canShoot = true;
+
     void Update()
     {
+        if (!canShoot)
+            return;
+
         if (Input.GetButtonDown("Fire1"))
         {
             Shoot();
